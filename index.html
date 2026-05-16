@@ -1,167 +1,275 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Xian | CIS Penn</title>
+  <title>Xian Wang</title>
+  <!-- disable favicon -->
+  <link rel="icon" href="data:,">
 
-  <meta name="description" content="PhD student @ PENN">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pangolin&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./util/main.css">
-  <link rel="shortcut icon" type="image/x-icon" href="./util/icon.png" />
-  <link rel="canonical" href="https://x1anwang.github.io/">
+  <style>
+    :root {
+      --paper: #fdfbf4;
+      --ink: #1a1a1a;
+      --line: rgba(0, 0, 0, 0.5);
+    }
 
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #efece3;
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      padding: 48px 24px;
+      min-height: 100vh;
+    }
+
+    /* ---------- Single-line Frame ---------- */
+    .page {
+      position: relative;
+      max-width: 920px;
+      margin: 0 auto;
+      background: var(--paper);
+      /* lighter hairline — feels thinner */
+      box-shadow: 0 0 0 0.5px var(--line);
+    }
+
+    .content {
+      padding: 56px 60px 64px;
+    }
+
+    /* ---------- Header ---------- */
+    .header {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .avatar {
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 0 0 0.5px var(--line);
+    }
+
+    .intro {
+      font-family: 'Pangolin', cursive;
+      font-size: 22px;
+      line-height: 1.6;
+      color: var(--ink);
+      padding-top: 2px;
+    }
+
+    .intro p {
+      margin: 0 0 14px;
+    }
+
+    .intro a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .intro a:hover {
+      background: #fff3a8;
+    }
+
+    /* ---------- Plain divider ---------- */
+    .divider {
+      border: none;
+      height: 1px;
+      background: var(--line);
+      transform: scaleY(0.5); /* hairline */
+      transform-origin: center;
+      width: 100%;
+      margin: 48px 0 36px;
+    }
+
+    /* ---------- Publications ---------- */
+    .pub-heading {
+      font-family: 'Pangolin', cursive;
+      font-size: 30px;
+      font-weight: 400;
+      margin: 0 0 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .pub-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .pub {
+      margin-bottom: 24px;
+      padding-left: 22px;
+      position: relative;
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    .pub::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      font-size: 14px;
+    }
+
+    .pub-title {
+      font-weight: 600;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .pub-authors u {
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--line);
+    }
+
+    .pub-venue {
+      font-style: italic;
+      color: #444;
+    }
+
+    .pub-links {
+      margin-top: 2px;
+      font-size: 13.5px;
+    }
+
+    .pub-links a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .pub-links a:hover {
+      background: #fff3a8;
+    }
+
+    .pub-links .b {
+      color: #555;
+    }
+
+    .note {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      margin-top: 20px;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 640px) {
+      body { padding: 24px 12px; }
+      .content { padding: 36px 24px 44px; }
+      .header {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+      .avatar { width: 170px; height: 170px; }
+    }
+  </style>
 </head>
 
+<body>
 
-<body style="background-color: #f3fbff;">
+  <div class="page">
+    <div class="content">
 
-  <header class="site-header">
-    <div class="wrapper">
-      <div class="wrapper nav">
-        <nav class="site-nav">
-          <div class="nav-links">
-            <div id="name">
-              Xian Wang
-            </div>
-            <div>
-              <a class="social-link" href="mailto:wangxian@seas.upenn.edu">Email</a>&nbsp;|&nbsp;
-              <a class="social-link"
-                href="https://scholar.google.com/citations?user=Mo-JLaEAAAAJ&hl=en&oi=sra">scholar</a>&nbsp;|&nbsp;
-              <a class="social-link" href="https://github.com/X1anWang">github</a>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </header>
+      <!-- Top: avatar + intro -->
+      <div class="header">
+        <img class="avatar" src="./util/xian_wang.JPG" alt="Xian Wang">
 
-  <div class="page-content">
-    <div class="wrapper">
-      <div class="home">
-        <div class="text-box">
-          <div class="indent">
-            <div class="spacer1"> <br> </div>
-            <strong3>&nbsp;About me&nbsp;</strong3><br>
-            <div class="spacer"> <br> </div>
-            <p>
-              I am Xian (pronounce like <a
-                href="https://www.youtube.com/watch?v=aSWlxVRz-0w">shee&middot;an</a>). I am a PhD student fortunately advised by Professor <a href="https://www.cis.upenn.edu/~linhphan/">Linh Thi Xuan Phan</a> at the University of Pennsylvania.
-                Prior to this, I obtained my MPhil degree at the CSE of HKUST, where I was fortunately advised by Professor <a
-                href="https://www.cse.ust.hk/~dipapado/">Dimitris Papadopoulos</a> and worked closely with Professor <a
-                href="https://idemertzis.com/">Ioannis Demertzis</a>. I completed my B.E. in Software
-              Engineering at Xidian Univeristy.
-            </p>
-            <div class="spacer2"> <br> </div>
-            <strong3>&nbsp;Publications&nbsp;</strong3><br>
-            <div class="spacer"> <br> </div>
-            <ul class="s-bullets">
-
-              <li>
-                <div class="paper">
-                  <strong>OBLIVIATOR: OBLIVIous Parallel Joins and other OperATORs in Shared Memory Environments</strong>
-                  <br>
-                  <div class="paper-details">
-                    Apostolos Mavrogiannakis*, <u>Xian Wang</u>*, Ioannis Demertzis, Dimitrios Papadopoulos, Minos Garofalakis.
-                    <br>
-                    <em>USENIX Security 2025 (with Artifact Available Badge)</em>
-                    <span class="paper-link">
-                      [<a href="https://eprint.iacr.org/2025/183" target="_blank">pdf</a>]
-                    </span>
-                    <span class="paper-link">
-                      [<a href="https://zenodo.org/records/14723872" target="_blank">code</a>]
-                    </span>
-                  </div>
-                </div>
-              </li>
-
-              <li>
-                <div class="paper">
-                  <strong>SOTER: Guarding Black-box Inference for General Neural Networks at the Edge</strong>
-                  <br>
-                  <div class="paper-details">
-                    Tianxiang Shen, Ji Qi, Jianyu Jiang, <u>Xian Wang</u>, Siyuan Wen, Xusheng Chen, Shixiong Zhao, Sen
-                    Wang, Li Chen, Xiapu Luo, Fengwei Zhang, Heming Cui.
-                    <br>
-                    <em>USENIX ATC 2022 (with Result Reproduced Badge)</em>
-                    <span class="paper-link">
-                      [<a href="https://www.usenix.org/conference/atc22/presentation/shen" target="_blank">pdf</a>]
-                    </span>
-                    <span class="paper-link">
-                      [<a href="https://github.com/hku-systems/SOTER" target="_blank">code</a>]
-                    </span>
-                    <span class="paper-link">
-                      [<a href="https://www.youtube.com/watch?v=aFBBY5JVpPU" target="_blank">video</a>]
-                    </span>
-                    <span class="paper-link">
-                      [<a
-                        href="https://www.usenix.org/sites/default/files/conference/protected-files/atc22_slides_shen_tianxiang.pdf"
-                        target="_blank">slides</a>]
-                    </span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="paper">
-                  <strong>ENIDrift: A Fast and Adaptive Ensemble System for Network Intrusion Detection under Real-world
-                    Drift</strong>
-                  <br>
-                  <div class="paper-details">
-                    <u>Xian Wang</u>.
-                    <br>
-                    <em>ACSAC 2022 (with Artifact Functional Badge)</em>
-                    <span class="paper-link">
-                      [<a href="https://dl.acm.org/doi/abs/10.1145/3564625.3567992" target="_blank">pdf</a>]
-                    </span>
-                    <span class="paper-link">
-                      [<a href="https://github.com/X1anWang/ENIDrift" target="_blank">code</a>]
-                    </span>
-                    <span class="paper-link">
-                      [<a href="https://drive.google.com/file/d/1s4t2UKC2Evp2g7U7Ta24pqEduWlu_nlh/view?usp=sharing"
-                        target="_blank">video</a>]
-                    </span>
-                    <span class="paper-link">
-                      [<a
-                        href="https://www.acsac.org/2022/program/papers/207-Wang-Anomaly_Intrusion_and_Threat_Detection.pdf"
-                        target="_blank">slides</a>]
-                    </span>
-                  </div>
-                </div>
-              </li>
-              <p></p>
-              <p></p>
-              <br>
-              <p>
-                (* denotes equal contribution, and listed in alphabetic order here.)
-              </p>
-            </ul>
-
-            <div class="spacer4"> <br> </div>
-            <strong3>&nbsp;Service&nbsp;</strong3><br>
-            <div class="spacer"> <br> </div>
-            <ul class="s-bullets2">
-              <strong2>Artifact evaluation committee:</strong2> USENIX ATC 2023, USENIX OSDI 2023
-            </ul>
-
-            <div class="spacer5"> <br> </div>
-            <strong3>&nbsp;Teaching assistant&nbsp;</strong3><br>
-            <div class="spacer"> <br> </div>
-            <ul class="s-bullets2">
-              <li>2024 Fall COMP2011 Programming with C++</li>
-              <li>2023 Fall COMP2012 Object-Oriented Programming and Data Structures</li>
-              <li>2022 Fall COMP3330 Interactive Mobile Application Design and Programming</li>
-            </ul>
-            <div class="spacer6"> <br> </div>
-          </div>
+        <div class="intro">
+          <p>
+            Hi! I'm Xian,
+            a PhD student at the University of Pennsylvania, fortunately advised by
+            Prof. <a href="https://www.cis.upenn.edu/~linhphan/">Linh Thi Xuan Phan</a>.
+            I got my MPhil at HKUST under Prof.
+            <a href="https://www.cse.ust.hk/~dipapado/">Dimitris Papadopoulos</a>,
+            working closely with Prof. <a href="https://idemertzis.com/">Ioannis Demertzis</a>.
+            Earlier — B.E. in Software Engineering from Xidian University.
+            My <a href="mailto:wangxian@seas.upenn.edu">email</a> and
+            <a href="https://scholar.google.com/citations?user=Mo-JLaEAAAAJ&hl=en&oi=sra">Google Scholar</a>.
+          </p>
         </div>
       </div>
+
+      <!-- Thin straight divider -->
+      <hr class="divider">
+
+      <!-- Publications -->
+      <h2 class="pub-heading">Publications</h2>
+
+      <ul class="pub-list">
+
+        <li class="pub">
+          <span class="pub-title">Uncertainty-Aware Resource Allocation for Multi-Path Programs with In-Kernel Predictions</span>
+          <span class="pub-authors">
+            Abigail Eisenklam*, Carlos A. Montenegro G.*, <u>Xian Wang</u>, Yifan Cai, Robert Gifford, Linh Thi Xuan Phan, Ricardo G. Sanfelice.
+          </span><br>
+          <span class="pub-venue">ECRTS 2026 (to appear)</span>
+        </li>
+
+        <li class="pub">
+          <span class="pub-title">OBLIVIATOR: Oblivious Parallel Joins and other Operators in Shared Memory Environments</span>
+          <span class="pub-authors">
+            Apostolos Mavrogiannakis*, <u>Xian Wang</u>*, Ioannis Demertzis, Dimitrios Papadopoulos, Minos Garofalakis.
+          </span><br>
+          <span class="pub-venue">USENIX Security 2025 (with Artifact Available Badge)</span>
+          <div class="pub-links">
+            <span class="b">[</span><a href="https://eprint.iacr.org/2025/183" target="_blank">pdf</a><span class="b">]</span>
+            <span class="b">[</span><a href="https://zenodo.org/records/14723872" target="_blank">code</a><span class="b">]</span>
+          </div>
+        </li>
+
+        <li class="pub">
+          <span class="pub-title">SOTER: Guarding Black-box Inference for General Neural Networks at the Edge</span>
+          <span class="pub-authors">
+            Tianxiang Shen, Ji Qi, Jianyu Jiang, <u>Xian Wang</u>, Siyuan Wen, Xusheng Chen, Shixiong Zhao,
+            Sen Wang, Li Chen, Xiapu Luo, Fengwei Zhang, Heming Cui.
+          </span><br>
+          <span class="pub-venue">USENIX ATC 2022 (with Result Reproduced Badge)</span>
+          <div class="pub-links">
+            <span class="b">[</span><a href="https://www.usenix.org/conference/atc22/presentation/shen" target="_blank">pdf</a><span class="b">]</span>
+            <span class="b">[</span><a href="https://github.com/hku-systems/SOTER" target="_blank">code</a><span class="b">]</span>
+            <span class="b">[</span><a href="https://www.youtube.com/watch?v=aFBBY5JVpPU" target="_blank">video</a><span class="b">]</span>
+            <span class="b">[</span><a href="https://www.usenix.org/sites/default/files/conference/protected-files/atc22_slides_shen_tianxiang.pdf" target="_blank">slides</a><span class="b">]</span>
+          </div>
+        </li>
+
+        <li class="pub">
+          <span class="pub-title">ENIDrift: A Fast and Adaptive Ensemble System for Network Intrusion Detection under Real-world Drift</span>
+          <span class="pub-authors"><u>Xian Wang</u>.</span><br>
+          <span class="pub-venue">ACSAC 2022 (with Artifact Functional Badge)</span>
+          <div class="pub-links">
+            <span class="b">[</span><a href="https://dl.acm.org/doi/abs/10.1145/3564625.3567992" target="_blank">pdf</a><span class="b">]</span>
+            <span class="b">[</span><a href="https://github.com/X1anWang/ENIDrift" target="_blank">code</a><span class="b">]</span>
+            <span class="b">[</span><a href="https://www.acsac.org/2022/program/papers/207-Wang-Anomaly_Intrusion_and_Threat_Detection.pdf" target="_blank">slides</a><span class="b">]</span>
+          </div>
+        </li>
+
+      </ul>
+
+      <p class="note">* equal contribution.</p>
+
     </div>
   </div>
-  <div class="spacer7"> <br> </div>
-
 
 </body>
-
 </html>
