@@ -12,6 +12,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pangolin&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome 4 (same one yuyou uses — for fa-*-square brand icons) + Academicons (local, mirrors yuyou's setup) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./util/academicons/css/academicons.min.css">
+
   <style>
     :root {
       --paper: #fdfbf4;
@@ -57,6 +61,13 @@
       align-items: start;
     }
 
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 170px;
+    }
+
     .avatar {
       width: 170px;
       height: 170px;
@@ -84,6 +95,31 @@
 
     .intro a:hover {
       background: #fff3a8;
+    }
+
+    /* ---------- Social icons (FA4 + Academicons branded squares) ---------- */
+    .socials {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 170px; /* match avatar width */
+    }
+
+    .socials a {
+      color: #5499c7;
+      text-decoration: none; /* kill the underline under the brand-square icons */
+      line-height: 1;
+      transition: color 0.18s ease;
+    }
+
+    .socials a:hover {
+      color: #3e7fa5;
+    }
+
+    .socials i {
+      font-size: 26px;
+      line-height: 1;
+      display: inline-block;
     }
 
     /* ---------- Plain divider ---------- */
@@ -191,7 +227,9 @@
       .header {
         grid-template-columns: 1fr;
         gap: 22px;
+        justify-items: start;
       }
+      .left-col { width: 170px; }
       .avatar { width: 170px; height: 170px; }
     }
   </style>
@@ -204,7 +242,15 @@
 
       <!-- Top: avatar + intro -->
       <div class="header">
-        <img class="avatar" src="./util/xian_wang.JPG" alt="Xian Wang">
+        <div class="left-col">
+          <img class="avatar" src="./util/xian_wang.JPG" alt="Xian Wang">
+          <nav class="socials" aria-label="social links">
+            <a href="mailto:wangxian@seas.upenn.edu" aria-label="Email" title="Email"><i class="fa fa-fw fa-envelope-square"></i></a>
+            <a href="https://github.com/X1anWang" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class="fa fa-fw fa-github-square"></i></a>
+            <a href="https://scholar.google.com/citations?user=Mo-JLaEAAAAJ&hl=en&oi=sra" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar"><i class="ai ai-fw ai-google-scholar-square"></i></a>
+            <a href="https://www.linkedin.com/in/x1anwang/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class="fa fa-fw fa-linkedin-square"></i></a>
+          </nav>
+        </div>
 
         <div class="intro">
           <p>
@@ -212,9 +258,6 @@
             Prof. <a href="https://www.cis.upenn.edu/~linhphan/">Linh Thi Xuan Phan</a>.
             I previously worked with Prof. <a href="https://www.cse.ust.hk/~dipapado/">Dimitris Papadopoulos</a>
             and Prof. <a href="https://idemertzis.com/">Ioannis Demertzis</a>.
-            Links: <a href="mailto:wangxian@seas.upenn.edu">Email</a>,
-            <a href="https://scholar.google.com/citations?user=Mo-JLaEAAAAJ&hl=en&oi=sra">Google Scholar</a>,
-            <a href="https://www.linkedin.com/in/x1anwang/">LinkedIn</a>.
           </p>
         </div>
       </div>
@@ -276,6 +319,7 @@
       </ul>
 
       <p class="note">* equal contribution.</p>
+
 
     </div>
   </div>
