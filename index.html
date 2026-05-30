@@ -5,55 +5,200 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Xian Wang</title>
-  <!-- disable favicon -->
-  <link rel="icon" href="data:,">
+  <link rel="icon" type="image/png" href="./util/penn.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pangolin&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome 4 (same one yuyou uses — for fa-*-square brand icons) + Academicons (local, mirrors yuyou's setup) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./util/academicons/css/academicons.min.css">
+  <!-- apply saved theme BEFORE first paint to avoid flash -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <style>
     :root {
-      --paper: #fdfbf4;
-      --ink: #1a1a1a;
-      --line: rgba(0, 0, 0, 0.5);
+      --bg: #f5f6f8;        /* very light, barely-there cool grey — page background */
+      --surface: #ffffff;   /* white — navbar + main frame */
+      --ink: #000000;
+      --line: rgba(0, 0, 0, 0.18);
+      --muted: #555;
+      --link: #5499c7;
+      --link-hover: #3e7fa5;
+      --max-width: 920px;
+      /* subtle blue-grey-leaning-grey glow */
+      --glow: 0 4px 22px rgba(75, 90, 115, 0.10);
+    }
+
+    /* ---------- Dark mode palette ---------- */
+    [data-theme="dark"] {
+      --bg: #14161b;        /* dark cool-grey page background */
+      --surface: #1d2026;   /* slightly lighter — navbar + main frame */
+      --ink: #e8eaee;       /* off-white text */
+      --line: rgba(255, 255, 255, 0.14);
+      --muted: #9aa0a8;
+      --link: #7ebed8;      /* lighter blue for dark bg contrast */
+      --link-hover: #a8d4e8;
+      --glow: 0 4px 22px rgba(0, 0, 0, 0.45);
+    }
+
+    html, body, .topnav, .page, .pub-links a, .theme-toggle {
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     * { box-sizing: border-box; }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
-      background: #efece3;
+      background: var(--bg);
       color: var(--ink);
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-      padding: 48px 24px;
-      min-height: 100vh;
+      padding: 36px 24px 80px;
     }
 
-    /* ---------- Single-line Frame ---------- */
+    a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--link);
+    }
+
+    /* ---------- Top Navigation Bar (sticky / floating) ---------- */
+    .topnav {
+      max-width: var(--max-width);
+      margin: 0 auto 18px;
+      background: var(--surface);
+      box-shadow: 0 0 0 0.5px var(--line), var(--glow);
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      padding: 14px 18px 14px 24px;
+      gap: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex: 1;
+    }
+
+    .topnav a {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.6px;
+      padding: 4px 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .topnav a:hover {
+      color: var(--link);
+      border-bottom-color: var(--link);
+    }
+
+    /* ---------- Theme toggle button ---------- */
+    .theme-toggle {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      color: var(--ink);
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .theme-toggle:hover {
+      color: var(--link);
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="dark"] .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .theme-toggle .icon {
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+
+    .theme-toggle .icon-sun { display: none; }
+    [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+    [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+    /* ---------- Main Frame ---------- */
     .page {
-      position: relative;
-      max-width: 920px;
+      max-width: var(--max-width);
       margin: 0 auto;
-      background: var(--paper);
-      /* lighter hairline — feels thinner */
-      box-shadow: 0 0 0 0.5px var(--line);
+      background: var(--surface);
+      box-shadow: 0 0 0 0.5px var(--line), var(--glow);
     }
 
     .content {
-      padding: 56px 60px 64px;
+      padding: 20px 56px 40px;
     }
 
-    /* ---------- Header ---------- */
+    /* ---------- Section ---------- */
+    .section {
+      padding: 12px 0 12px;
+      scroll-margin-top: 80px; /* offset so headings clear the sticky navbar */
+    }
+    .section + .section {
+      border-top: 0.5px solid var(--line);
+      margin-top: 8px;
+      padding-top: 24px;
+    }
+    .section:first-child {
+      padding-top: 4px;
+    }
+
+    .section-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+
+    /* ---------- About Section ---------- */
     .header {
       display: grid;
       grid-template-columns: 170px 1fr;
@@ -73,75 +218,46 @@
       height: 170px;
       object-fit: cover;
       display: block;
-      box-shadow: 0 0 0 0.5px var(--line);
+      border-radius: 6px;
+      box-shadow: var(--glow);
     }
 
     .intro {
-      font-family: 'Pangolin', cursive;
-      font-size: 19px;
-      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
       color: var(--ink);
       padding-top: 2px;
     }
 
     .intro p {
-      margin: 0 0 14px;
+      margin: 0 0 12px;
     }
 
     .intro a {
-      color: var(--ink);
-      text-decoration: none;
+      color: var(--link);
     }
 
     .intro a:hover {
-      background: #fff3a8;
+      color: var(--link-hover);
     }
 
-    /* ---------- Social icons (FA4 + Academicons branded squares) ---------- */
-    .socials {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 170px; /* match avatar width */
+    .about-links {
+      margin-top: 30px;
+      font-size: 14px;
+      color: var(--ink);
+      text-align: center;
     }
 
-    .socials a {
-      color: #5499c7;
-      text-decoration: none; /* kill the underline under the brand-square icons */
-      line-height: 1;
-      transition: color 0.18s ease;
+    .intro .about-links a {
+      color: var(--link);
     }
 
-    .socials a:hover {
-      color: #3e7fa5;
-    }
-
-    .socials i {
-      font-size: 26px;
-      line-height: 1;
-      display: inline-block;
-    }
-
-    /* ---------- Plain divider ---------- */
-    .divider {
-      border: none;
-      height: 1px;
-      background: var(--line);
-      transform: scaleY(0.5); /* hairline */
-      transform-origin: center;
-      width: 100%;
-      margin: 48px 0 36px;
+    .intro .about-links a:hover {
+      color: var(--link-hover);
     }
 
     /* ---------- Publications ---------- */
-    .pub-heading {
-      font-family: 'Pangolin', cursive;
-      font-size: 24px;
-      font-weight: 400;
-      margin: 0 0 20px;
-      letter-spacing: 0.5px;
-    }
-
     .pub-list {
       list-style: none;
       padding: 0;
@@ -149,43 +265,41 @@
     }
 
     .pub {
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       padding-left: 22px;
       position: relative;
       font-family: 'Inter', sans-serif;
       font-size: 14.5px;
       line-height: 1.65;
-      color: #000;
+      color: var(--ink);
     }
 
     .pub::before {
-      content: "✦";
+      content: "";
       position: absolute;
-      left: 0;
-      top: 1px;
-      font-size: 14px;
-      color: #000;
+      left: 6px;
+      top: 11px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ink);
     }
 
     .pub-title {
       font-weight: 600;
-      color: #000;
+      color: var(--ink);
       display: block;
       margin-bottom: 3px;
     }
 
-    .pub-authors {
-      color: #000;
-    }
-
     .pub-authors u {
       text-decoration: none;
-      border-bottom: 0.5px solid #000;
+      border-bottom: 0.5px solid var(--ink);
     }
 
     .pub-venue {
       font-style: italic;
-      color: #000;
+      color: var(--ink);
     }
 
     .pub-links {
@@ -197,36 +311,95 @@
     }
 
     .pub-links a {
-      color: #000;
+      color: var(--ink);
       text-decoration: none;
       padding: 0 6px;
-      border: 0.5px solid #000;
+      border: 0.5px solid var(--ink);
       border-radius: 3px;
       line-height: 1.55;
       transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     }
 
     .pub-links a:hover {
-      background: #000;
-      color: #fdfbf4;
-      border-color: #000;
+      background: var(--ink);
+      color: var(--surface);
+      border-color: var(--ink);
     }
 
     .note {
       font-family: 'Inter', sans-serif;
       font-size: 13px;
-      margin-top: 20px;
-      color: #000;
+      margin: -6px 0 16px;
+      color: var(--ink);
       font-style: italic;
+    }
+
+    /* ---------- Awards / Teaching / Service lists ---------- */
+    .item-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .item-list li {
+      padding: 5px 0 5px 22px;
+      position: relative;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    .item-list li::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 14px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+
+    .item-list .year {
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    /* ---------- Visit Tracker ---------- */
+    .footer-divider {
+      border: none;
+      border-top: 0.5px solid var(--line);
+      width: 100%;
+      margin: 36px 0 24px;
+    }
+
+    .visit-tracker {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 12px;
+    }
+
+    .visit-tracker img {
+      display: block;
+      width: 200px;
+      max-width: 100%;
+      height: auto;
     }
 
     /* ---------- Mobile ---------- */
     @media (max-width: 640px) {
-      body { padding: 24px 12px; }
-      .content { padding: 36px 24px 44px; }
+      body { padding: 20px 12px 60px; }
+      .content { padding: 28px 22px 36px; }
+      .nav-wrap {
+        padding: 12px 8px;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .topnav a { font-size: 13px; padding: 4px 4px; }
       .header {
         grid-template-columns: 1fr;
-        gap: 22px;
+        gap: 20px;
         justify-items: start;
       }
       .left-col { width: 170px; }
@@ -237,92 +410,196 @@
 
 <body>
 
+  <!-- Top Navigation -->
+  <nav class="topnav" aria-label="page sections">
+    <div class="nav-wrap">
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#awards">Awards</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#service">Service</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <!-- light mode shows moon (click → dark) -->
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <!-- dark mode shows sun (click → light) -->
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Frame -->
   <div class="page">
     <div class="content">
 
-      <!-- Top: avatar + intro -->
-      <div class="header">
-        <div class="left-col">
-          <img class="avatar" src="./util/xian_wang.JPG" alt="Xian Wang">
-          <nav class="socials" aria-label="social links">
-            <a href="mailto:wangxian@seas.upenn.edu" aria-label="Email" title="Email"><i class="fa fa-fw fa-envelope-square"></i></a>
-            <a href="https://github.com/X1anWang" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class="fa fa-fw fa-github-square"></i></a>
-            <a href="https://scholar.google.com/citations?user=Mo-JLaEAAAAJ&hl=en&oi=sra" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar"><i class="ai ai-fw ai-google-scholar-square"></i></a>
-            <a href="https://www.linkedin.com/in/x1anwang/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class="fa fa-fw fa-linkedin-square"></i></a>
-          </nav>
-        </div>
+      <!-- ===== About ===== -->
+      <section id="about" class="section">
+        <h2 class="section-heading">About</h2>
 
-        <div class="intro">
-          <p>
-            Hi! I'm Xian, a PhD student at the University of Pennsylvania, advised by
-            Prof. <a href="https://www.cis.upenn.edu/~linhphan/">Linh Thi Xuan Phan</a>.
-            I previously worked with Prof. <a href="https://www.cse.ust.hk/~dipapado/">Dimitris Papadopoulos</a>
-            and Prof. <a href="https://idemertzis.com/">Ioannis Demertzis</a>.
-          </p>
+        <div class="header">
+          <div class="left-col">
+            <img class="avatar" src="./util/xian_wang.JPG" alt="Xian Wang">
+          </div>
+
+          <div class="intro">
+            <p>
+              Hi! I'm Xian, a PhD student at the University of Pennsylvania, advised by
+              Prof. <a href="https://www.cis.upenn.edu/~linhphan/">Linh Thi Xuan Phan</a>.
+              I previously worked with Prof. <a href="https://www.cse.ust.hk/~dipapado/">Dimitris Papadopoulos</a>
+              and Prof. <a href="https://idemertzis.com/">Ioannis Demertzis</a>.
+            </p>
+            <p class="about-links">
+              <a href="mailto:wangxian@seas.upenn.edu">Email</a>&nbsp;&middot;&nbsp;
+              <a href="https://github.com/X1anWang" target="_blank" rel="noopener">GitHub</a>&nbsp;&middot;&nbsp;
+              <a href="https://scholar.google.com/citations?user=Mo-JLaEAAAAJ&hl=en&oi=sra" target="_blank" rel="noopener">Google Scholar</a>&nbsp;&middot;&nbsp;
+              <a href="https://www.linkedin.com/in/x1anwang/" target="_blank" rel="noopener">LinkedIn</a>
+            </p>
+          </div>
         </div>
+      </section>
+
+      <!-- ===== Publications ===== -->
+      <section id="publications" class="section">
+        <h2 class="section-heading">Publications</h2>
+        <p class="note">* equal contribution.</p>
+
+        <ul class="pub-list">
+
+          <li class="pub">
+            <span class="pub-title">Uncertainty-Aware Resource Allocation for Multi-Path Programs with In-Kernel Predictions</span>
+            <span class="pub-authors">
+              Abigail Eisenklam*, Carlos A. Montenegro G.*, <u>Xian Wang</u>, Yifan Cai, Robert Gifford, Linh Thi Xuan Phan, Ricardo G. Sanfelice.
+            </span><br>
+            <span class="pub-venue">ECRTS 2026 (Result Reproduced)</span>
+          </li>
+
+          <li class="pub">
+            <span class="pub-title">OBLIVIATOR: Oblivious Parallel Joins and other Operators in Shared Memory Environments</span>
+            <span class="pub-authors">
+              Apostolos Mavrogiannakis*, <u>Xian Wang</u>*, Ioannis Demertzis, Dimitrios Papadopoulos, Minos Garofalakis.
+            </span><br>
+            <span class="pub-venue">USENIX Security 2025 (Artifact Functional)</span>
+            <div class="pub-links">
+              <a href="https://eprint.iacr.org/2025/183" target="_blank">pdf</a>
+              <a href="https://zenodo.org/records/14723872" target="_blank">code</a>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="pub-title">SOTER: Guarding Black-box Inference for General Neural Networks at the Edge</span>
+            <span class="pub-authors">
+              Tianxiang Shen, Ji Qi, Jianyu Jiang, <u>Xian Wang</u>, Siyuan Wen, Xusheng Chen, Shixiong Zhao,
+              Sen Wang, Li Chen, Xiapu Luo, Fengwei Zhang, Heming Cui.
+            </span><br>
+            <span class="pub-venue">USENIX ATC 2022 (Result Reproduced)</span>
+            <div class="pub-links">
+              <a href="https://www.usenix.org/conference/atc22/presentation/shen" target="_blank">pdf</a>
+              <a href="https://github.com/hku-systems/SOTER" target="_blank">code</a>
+              <a href="https://www.youtube.com/watch?v=aFBBY5JVpPU" target="_blank">video</a>
+              <a href="https://www.usenix.org/sites/default/files/conference/protected-files/atc22_slides_shen_tianxiang.pdf" target="_blank">slides</a>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="pub-title">ENIDrift: A Fast and Adaptive Ensemble System for Network Intrusion Detection under Real-world Drift</span>
+            <span class="pub-authors"><u>Xian Wang</u>.</span><br>
+            <span class="pub-venue">ACSAC 2022 (Artifact Functional)</span>
+            <div class="pub-links">
+              <a href="https://dl.acm.org/doi/abs/10.1145/3564625.3567992" target="_blank">pdf</a>
+              <a href="https://github.com/X1anWang/ENIDrift" target="_blank">code</a>
+              <a href="https://www.acsac.org/2022/program/papers/207-Wang-Anomaly_Intrusion_and_Threat_Detection.pdf" target="_blank">slides</a>
+            </div>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- ===== Awards ===== -->
+      <section id="awards" class="section">
+        <h2 class="section-heading">Awards</h2>
+
+        <ul class="item-list">
+          <li><span class="year">2026</span>UPenn PhD Career Exploration Fellowship</li>
+          <li><span class="year">2025</span>UPenn Graduate Fellowship and Research Stipend Award</li>
+          <li><span class="year">2023</span>HKUST Post Graduate Scholarship</li>
+          <li><span class="year">2021</span>National Scholarship</li>
+          <li><span class="year">2020</span>National Scholarship</li>
+          <li><span class="year">2020</span>Modern Scientists Memorial Scholarship</li>
+          <li><span class="year">2019</span>National Scholarship</li>
+        </ul>
+      </section>
+
+      <!-- ===== Teaching ===== -->
+      <section id="teaching" class="section">
+        <h2 class="section-heading">Teaching</h2>
+
+        <ul class="item-list">
+          <li>2026 Spring CIS 5050 Software System, TA</li>
+          <li>2024 Fall COMP 2011 Programming with C++, TA</li>
+          <li>2023 Fall COMP 2012 Object-Oriented Programming and Data Structures, TA</li>
+          <li>2022 Fall COMP 3330 Interactive Mobile Application Design and Programming, TA</li>
+        </ul>
+      </section>
+
+      <!-- ===== Service ===== -->
+      <section id="service" class="section">
+        <h2 class="section-heading">Service</h2>
+
+        <ul class="item-list">
+          <li>Artifact Evaluation Committee: USENIX ATC 2023, USENIX OSDI 2023</li>
+        </ul>
+      </section>
+
+      <!-- ===== Visit Tracker ===== -->
+      <hr class="footer-divider">
+      <div class="visit-tracker">
+        <a href="https://mapmyvisitors.com/web/1c4w2" title="Visit tracker" target="_blank" rel="noopener">
+          <img id="visit-img"
+               alt="Visit tracker"
+               data-src-light="https://mapmyvisitors.com/map.png?cl=080808&w=300&t=tt&d=t1OCjFVLydd9gdCh10xPCoPzbNvDwWJDZuCNPizgK7I&co=ffffff&ct=808080"
+               data-src-dark="https://mapmyvisitors.com/map.png?cl=e8eaee&w=300&t=tt&d=t1OCjFVLydd9gdCh10xPCoPzbNvDwWJDZuCNPizgK7I&co=1d2026&ct=e8eaee">
+        </a>
       </div>
-
-      <!-- Thin straight divider -->
-      <hr class="divider">
-
-      <!-- Publications -->
-      <h2 class="pub-heading">Publications</h2>
-
-      <ul class="pub-list">
-
-        <li class="pub">
-          <span class="pub-title">Uncertainty-Aware Resource Allocation for Multi-Path Programs with In-Kernel Predictions</span>
-          <span class="pub-authors">
-            Abigail Eisenklam*, Carlos A. Montenegro G.*, <u>Xian Wang</u>, Yifan Cai, Robert Gifford, Linh Thi Xuan Phan, Ricardo G. Sanfelice.
-          </span><br>
-          <span class="pub-venue">ECRTS 2026 (Result Reproduced)</span>
-        </li>
-
-        <li class="pub">
-          <span class="pub-title">OBLIVIATOR: Oblivious Parallel Joins and other Operators in Shared Memory Environments</span>
-          <span class="pub-authors">
-            Apostolos Mavrogiannakis*, <u>Xian Wang</u>*, Ioannis Demertzis, Dimitrios Papadopoulos, Minos Garofalakis.
-          </span><br>
-          <span class="pub-venue">USENIX Security 2025 (Artifact Functional)</span>
-          <div class="pub-links">
-            <a href="https://eprint.iacr.org/2025/183" target="_blank">pdf</a>
-            <a href="https://zenodo.org/records/14723872" target="_blank">code</a>
-          </div>
-        </li>
-
-        <li class="pub">
-          <span class="pub-title">SOTER: Guarding Black-box Inference for General Neural Networks at the Edge</span>
-          <span class="pub-authors">
-            Tianxiang Shen, Ji Qi, Jianyu Jiang, <u>Xian Wang</u>, Siyuan Wen, Xusheng Chen, Shixiong Zhao,
-            Sen Wang, Li Chen, Xiapu Luo, Fengwei Zhang, Heming Cui.
-          </span><br>
-          <span class="pub-venue">USENIX ATC 2022 (Result Reproduced)</span>
-          <div class="pub-links">
-            <a href="https://www.usenix.org/conference/atc22/presentation/shen" target="_blank">pdf</a>
-            <a href="https://github.com/hku-systems/SOTER" target="_blank">code</a>
-            <a href="https://www.youtube.com/watch?v=aFBBY5JVpPU" target="_blank">video</a>
-            <a href="https://www.usenix.org/sites/default/files/conference/protected-files/atc22_slides_shen_tianxiang.pdf" target="_blank">slides</a>
-          </div>
-        </li>
-
-        <li class="pub">
-          <span class="pub-title">ENIDrift: A Fast and Adaptive Ensemble System for Network Intrusion Detection under Real-world Drift</span>
-          <span class="pub-authors"><u>Xian Wang</u>.</span><br>
-          <span class="pub-venue">ACSAC 2022 (Artifact Functional)</span>
-          <div class="pub-links">
-            <a href="https://dl.acm.org/doi/abs/10.1145/3564625.3567992" target="_blank">pdf</a>
-            <a href="https://github.com/X1anWang/ENIDrift" target="_blank">code</a>
-            <a href="https://www.acsac.org/2022/program/papers/207-Wang-Anomaly_Intrusion_and_Threat_Detection.pdf" target="_blank">slides</a>
-          </div>
-        </li>
-
-      </ul>
-
-      <p class="note">* equal contribution.</p>
-
 
     </div>
   </div>
+
+  <script>
+    (function () {
+      var btn = document.querySelector('.theme-toggle');
+      var img = document.getElementById('visit-img');
+
+      function syncTrackerImg() {
+        if (!img) return;
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var next = isDark ? img.getAttribute('data-src-dark') : img.getAttribute('data-src-light');
+        if (next && img.getAttribute('src') !== next) img.setAttribute('src', next);
+      }
+
+      // initial — single fetch for whichever theme is active
+      syncTrackerImg();
+
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+          var next = current === 'dark' ? 'light' : 'dark';
+          if (next === 'light') {
+            document.documentElement.removeAttribute('data-theme');
+          } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+          try { localStorage.setItem('theme', next); } catch (e) {}
+          syncTrackerImg();
+        });
+      }
+    })();
+  </script>
 
 </body>
 </html>
