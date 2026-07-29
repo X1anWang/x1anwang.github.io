@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publications · Xian Wang</title>
+  <link rel="icon" type="image/png" href="./util/penn.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./util/style.css">
+
+  <!-- apply saved theme BEFORE first paint to avoid flash -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav" aria-label="site">
+    <div class="nav-wrap">
+      <span class="nav-brand">Xian Wang</span>
+      <div class="nav-links">
+        <a href="index.html">About</a>
+        <a href="publications.html" class="active">Publications</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <!-- light mode shows moon (click → dark) -->
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <!-- dark mode shows sun (click → light) -->
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content">
+
+      <!-- ===== Publications ===== -->
+      <section id="publications" class="section">
+        <ul class="pub-list">
+
+          <li class="pub">
+            <span class="pub-title">DISCO<sup>*</sup>: DIstributed and SCalable Oblivious Joins and Oblivious Primitives</span>
+            <span class="pub-authors">
+              Apostolos Mavrogiannakis, <u>Xian Wang</u>, Ioannis Demertzis, Dimitrios Papadopoulos, Minos Garofalakis.
+            </span><br>
+            <span class="pub-venue">SOSP 2026</span>
+            <div class="pub-links">
+              <!-- placeholder link: swap for the real DISCO* paper URL when it is out -->
+              <a href="https://x1anwang.github.io/" target="_blank">pdf</a>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="pub-title">Uncertainty-Aware Resource Allocation for Multi-Path Programs with In-Kernel Predictions</span>
+            <span class="pub-authors">
+              Abigail Eisenklam*, Carlos A. Montenegro G.*, <u>Xian Wang</u>, Yifan Cai, Robert Gifford, Linh Thi Xuan Phan, Ricardo G. Sanfelice.
+            </span><br>
+            <span class="pub-venue">ECRTS 2026 (Result Reproduced)</span>
+            <div class="pub-links">
+              <a href="https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ECRTS.2026.17" target="_blank">pdf</a>
+              <a href="https://github.com/phan-lab/MPORA" target="_blank">code</a>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="pub-title">OBLIVIATOR: Oblivious Parallel Joins and other Operators in Shared Memory Environments</span>
+            <span class="pub-authors">
+              Apostolos Mavrogiannakis*, <u>Xian Wang</u>*, Ioannis Demertzis, Dimitrios Papadopoulos, Minos Garofalakis.
+            </span><br>
+            <span class="pub-venue">USENIX Security 2025 (Artifact Functional)</span>
+            <div class="pub-links">
+              <a href="https://eprint.iacr.org/2025/183" target="_blank">pdf</a>
+              <a href="https://zenodo.org/records/14723872" target="_blank">code</a>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="pub-title">SOTER: Guarding Black-box Inference for General Neural Networks at the Edge</span>
+            <span class="pub-authors">
+              Tianxiang Shen, Ji Qi, Jianyu Jiang, <u>Xian Wang</u>, Siyuan Wen, Xusheng Chen, Shixiong Zhao,
+              Sen Wang, Li Chen, Xiapu Luo, Fengwei Zhang, Heming Cui.
+            </span><br>
+            <span class="pub-venue">USENIX ATC 2022 (Result Reproduced)</span>
+            <div class="pub-links">
+              <a href="https://www.usenix.org/conference/atc22/presentation/shen" target="_blank">pdf</a>
+              <a href="https://github.com/hku-systems/SOTER" target="_blank">code</a>
+              <a href="https://www.youtube.com/watch?v=aFBBY5JVpPU" target="_blank">video</a>
+              <a href="https://www.usenix.org/sites/default/files/conference/protected-files/atc22_slides_shen_tianxiang.pdf" target="_blank">slides</a>
+            </div>
+          </li>
+
+          <li class="pub">
+            <span class="pub-title">ENIDrift: A Fast and Adaptive Ensemble System for Network Intrusion Detection under Real-world Drift</span>
+            <span class="pub-authors"><u>Xian Wang</u>.</span><br>
+            <span class="pub-venue">ACSAC 2022 (Artifact Functional)</span>
+            <div class="pub-links">
+              <a href="https://dl.acm.org/doi/abs/10.1145/3564625.3567992" target="_blank">pdf</a>
+              <a href="https://github.com/X1anWang/ENIDrift" target="_blank">code</a>
+              <a href="https://www.acsac.org/2022/program/papers/207-Wang-Anomaly_Intrusion_and_Threat_Detection.pdf" target="_blank">slides</a>
+            </div>
+          </li>
+
+        </ul>
+
+        <p class="note">* equal contribution.</p>
+      </section>
+
+      <!-- ===== Visit Tracker =====
+           Disabled on this page — visits are counted on the About page only.
+           To count (and show) them here too, uncomment this block:
+
+      <hr class="footer-divider">
+      <div class="visit-tracker">
+        <a href="https://mapmyvisitors.com/web/1c4w2" title="Visit tracker" target="_blank" rel="noopener">
+          <img id="visit-img"
+               alt="Visit tracker"
+               data-src-light="https://mapmyvisitors.com/map.png?cl=080808&w=300&t=tt&d=t1OCjFVLydd9gdCh10xPCoPzbNvDwWJDZuCNPizgK7I&co=f5f6f8&ct=808080"
+               data-src-dark="https://mapmyvisitors.com/map.png?cl=e8eaee&w=300&t=tt&d=t1OCjFVLydd9gdCh10xPCoPzbNvDwWJDZuCNPizgK7I&co=14161b&ct=e8eaee">
+        </a>
+      </div>
+      -->
+
+  </main>
+
+  <footer class="site-footer">&copy; 2026 Xian Wang</footer>
+
+  <script src="./util/theme.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,427 @@
+:root {
+  --bg: #f5f6f8;        /* very light, barely-there cool grey — page + navbar background */
+  --ink: #000000;
+  --line: rgba(0, 0, 0, 0.18);
+  --muted: #555;
+  --link: #5499c7;
+  --link-hover: #3e7fa5;
+  --max-width: 740px;
+  /* subtle blue-grey-leaning-grey glow */
+  --glow: 0 4px 22px rgba(75, 90, 115, 0.10);
+  --nav-shadow: 0 2px 8px rgba(75, 90, 115, 0.10);
+}
+
+/* ---------- Dark mode palette ---------- */
+[data-theme="dark"] {
+  --bg: #14161b;        /* dark cool-grey page + navbar background */
+  --ink: #e8eaee;       /* off-white text */
+  --line: rgba(255, 255, 255, 0.14);
+  --muted: #9aa0a8;
+  --link: #7ebed8;      /* lighter blue for dark bg contrast */
+  --link-hover: #a8d4e8;
+  --glow: 0 4px 22px rgba(0, 0, 0, 0.45);
+  --nav-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+html, body, .topnav, .pub-links a, .theme-toggle {
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  padding: 0;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link);
+}
+
+/* ---------- Top Navigation Bar (full-width, pinned to viewport top) ---------- */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  background: var(--bg);
+  border-bottom: 0.5px solid var(--line);
+  box-shadow: var(--nav-shadow);
+}
+
+.nav-wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  gap: 16px;
+}
+
+.nav-brand {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+  margin-right: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.topnav a {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  padding: 4px 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.topnav a:hover {
+  color: var(--link);
+  border-bottom-color: var(--link);
+}
+
+/* current page */
+.nav-links a.active {
+  color: var(--link);
+  border-bottom-color: var(--link);
+}
+
+/* ---------- Theme toggle button ---------- */
+.theme-toggle {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--link);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.theme-toggle .icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+/* ---------- Main Content ---------- */
+.content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 36px 24px 20px;
+}
+
+/* ---------- Section ---------- */
+.section {
+  padding: 12px 0 12px;
+  scroll-margin-top: 70px; /* offset so headings clear the sticky navbar */
+}
+.section + .section {
+  margin-top: 0;
+  padding-top: 8px;
+}
+.section:first-child {
+  padding-top: 4px;
+}
+
+/* same size/weight as the "Xian Wang" wordmark in the navbar */
+.section-heading {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+/* ---------- About Section ---------- */
+.header {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 140px;
+}
+
+/* portrait rectangle — cover crops the sides, not the top/bottom */
+.avatar {
+  width: 140px;
+  height: 175px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 6px;
+  box-shadow: var(--glow);
+}
+
+.intro {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+  padding-top: 2px;
+}
+
+.intro p {
+  margin: 0 0 12px;
+}
+
+.intro a {
+  color: var(--link);
+}
+
+.intro a:hover {
+  color: var(--link-hover);
+}
+
+/* ---------- Social icon row (under the photo) ---------- */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: -2px;
+}
+
+.social-icons a {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.social-icons a:hover {
+  color: var(--link);
+}
+
+/* ---------- News ---------- */
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-list li {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 14px;
+  padding: 7px 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.news-date {
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.news-list a {
+  color: var(--link);
+}
+
+.news-list a:hover {
+  color: var(--link-hover);
+}
+
+/* DISCO* — asterisk sits high and tight, never mid-line */
+sup {
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: super;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px 28px;
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- Publications ---------- */
+.pub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pub {
+  margin-bottom: 22px;
+  padding-left: 22px;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.pub::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 11px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.pub-title {
+  font-weight: 600;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+
+.pub-authors u {
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--ink);
+}
+
+.pub-venue {
+  font-style: italic;
+  color: var(--ink);
+}
+
+.pub-links {
+  margin-top: 2px;
+  font-size: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.pub-links a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0 6px;
+  border: 0.5px solid var(--ink);
+  border-radius: 3px;
+  line-height: 1.55;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.pub-links a:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.note {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-style: italic;
+}
+
+/* ---------- Visit Tracker ---------- */
+/* invisible counter pixel: the request to mapmyvisitors is what registers the
+   visit, so the image must stay in the DOM and actually load — it just never
+   takes up space or shows anything. */
+.visit-ping {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.footer-divider {
+  border: none;
+  border-top: 0.5px solid var(--line);
+  width: 100%;
+  margin: 36px 0 24px;
+}
+
+.visit-tracker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 12px;
+}
+
+.visit-tracker img {
+  display: block;
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .content { padding: 26px 18px 16px; }
+  .nav-wrap {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .nav-links { gap: 14px; }
+  .nav-brand { font-size: 14px; }
+  .topnav a { font-size: 13px; padding: 4px 2px; }
+  .header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: start;
+  }
+  .left-col { width: 140px; }
+  .avatar { width: 140px; height: 175px; }
+  .news-list li { grid-template-columns: 1fr; gap: 2px; }
+  .site-footer { margin-top: 20px; padding: 0 18px 24px; }
+}
