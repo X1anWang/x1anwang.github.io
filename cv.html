@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV · Xian Wang</title>
+  <link rel="icon" type="image/png" href="./util/penn.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./util/style.css">
+
+  <!-- apply saved theme BEFORE first paint to avoid flash -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav" aria-label="site">
+    <div class="nav-wrap">
+      <span class="nav-brand">Xian Wang</span>
+      <div class="nav-links">
+        <a href="index.html">About</a>
+        <a href="publications.html">Publications</a>
+        <a href="cv.html" class="active">CV</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <!-- light mode shows moon (click → dark) -->
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <!-- dark mode shows sun (click → light) -->
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content">
+
+      <!-- ===== CV ===== -->
+      <section id="cv" class="section">
+        <div class="cv-viewer">
+          <iframe src="xianwang_cv.pdf#view=FitH" title="Xian Wang CV"></iframe>
+        </div>
+        <p class="cv-fallback">
+          If the PDF does not display, <a href="xianwang_cv.pdf" target="_blank" rel="noopener">open or download the CV</a>.
+        </p>
+      </section>
+
+  </main>
+
+  <footer class="site-footer">&copy; 2026 Xian Wang</footer>
+
+  <script src="./util/theme.js"></script>
+
+</body>
+</html>

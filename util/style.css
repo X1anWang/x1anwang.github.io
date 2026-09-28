@@ -405,6 +405,33 @@ sup {
   height: auto;
 }
 
+/* ---------- CV (embedded PDF, same width as .content) ---------- */
+.cv-viewer {
+  width: 100%;
+  height: calc(100vh - 150px);
+  min-height: 480px;
+  border: 0.5px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--glow);
+}
+
+.cv-viewer iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.cv-fallback {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.cv-fallback a { color: var(--link); }
+
 /* ---------- Mobile ---------- */
 @media (max-width: 640px) {
   .content { padding: 26px 18px 16px; }
